@@ -1,0 +1,15 @@
+/.idea
+.DS_Store
+Thumbs.db
+
+# Go workspace files (local development only)
+go.work
+go.work.sum
+
+# Vendored dependencies
+/vendor
+
+# Test & coverage output
+*.out
+*.test
+/coverage

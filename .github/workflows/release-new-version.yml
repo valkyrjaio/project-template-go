@@ -1,0 +1,30 @@
+# NOTE: references a Go reusable workflow (_create-go-release.yml) that is not
+# yet authored in valkyrjaio/.github. This workflow is manual (workflow_dispatch)
+# and will only run once that reusable workflow lands; it does not block CI.
+name: Create a New Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version component to bump'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - rc
+
+run-name: "Release ${{ inputs.bump }} bump on ${{ github.ref_name }}"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: valkyrjaio/.github/.github/workflows/_create-go-release.yml@bcbf9696bd9a7fd71abcf4d00d3420cc949c98e1
+    secrets: inherit
+    with:
+      bump: ${{ inputs.bump }}
+      info-file-path: template/constant/info.go

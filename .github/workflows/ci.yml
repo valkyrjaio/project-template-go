@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [ 'master', '*.x' ]
+  pull_request:
+    branches: [ 'master', '*.x' ]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  commit-message-check:
+    name: Commit Message Check
+    if: github.event_name == 'pull_request'
+    uses: valkyrjaio/.github/.github/workflows/_commit-message-check.yml@bcbf9696bd9a7fd71abcf4d00d3420cc949c98e1
+    secrets: inherit
+
+  trailing-newline-check:
+    name: Trailing Newline Check
+    if: github.event_name == 'pull_request'
+    uses: valkyrjaio/.github/.github/workflows/_trailing-newline-check.yml@bcbf9696bd9a7fd71abcf4d00d3420cc949c98e1
+    permissions:
+      pull-requests: write
+      contents: read
+    secrets: inherit
+
+  golangci-lint:
+    name: golangci-lint
+    uses: valkyrjaio/.github/.github/workflows/_golangci-lint-go.yml@bcbf9696bd9a7fd71abcf4d00d3420cc949c98e1
+    with:
+      paths: |
+        ci:
+          - '.github/ci/lint/**'
+          - '.golangci.yml'
+          - 'Makefile'
+          - '.github/workflows/ci.yml'
+        files:
+          - '**/*.go'
+          - 'go.mod'
+          - 'go.sum'
+          - '.golangci.yml'
+          - 'Makefile'
+          - '.github/ci/lint/**'
+          - '.github/workflows/ci.yml'
+    secrets: inherit
+
+  test:
+    name: Test
+    uses: valkyrjaio/.github/.github/workflows/_test-go.yml@bcbf9696bd9a7fd71abcf4d00d3420cc949c98e1
+    with:
+      paths: |
+        ci:
+          - '.github/ci/lint/**'
+          - 'Makefile'
+          - '.github/workflows/ci.yml'
+        files:
+          - '**/*.go'
+          - 'go.mod'
+          - 'go.sum'
+          - 'Makefile'
+          - '.github/ci/lint/**'
+          - '.github/workflows/ci.yml'
+    secrets: inherit

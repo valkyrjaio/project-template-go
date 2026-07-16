@@ -1,0 +1,19 @@
+# NOTE: references a Go reusable workflow (_create-go-version-branch.yml) that is
+# not yet authored in valkyrjaio/.github. This workflow is manual
+# (workflow_dispatch) and will only run once that reusable workflow lands.
+name: Create Major Release Version Branch
+
+on: workflow_dispatch
+
+run-name: Create new version for upcoming major release
+
+jobs:
+  create:
+    uses: valkyrjaio/.github/.github/workflows/_create-go-version-branch.yml@bcbf9696bd9a7fd71abcf4d00d3420cc949c98e1
+    secrets: inherit
+    with:
+      dependencies: |
+        [
+          {"name": "Root Module",   "directory": "."},
+          {"name": "golangci-lint", "directory": ".github/ci/lint"}
+        ]
