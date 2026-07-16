@@ -1,6 +1,3 @@
-# NOTE: references a Go reusable workflow (_create-go-version-branch.yml) that is
-# not yet authored in valkyrjaio/.github. This workflow is manual
-# (workflow_dispatch) and will only run once that reusable workflow lands.
 name: Create Major Release Version Branch
 
 on: workflow_dispatch

@@ -1,6 +1,3 @@
-# NOTE: references a Go reusable workflow (_create-go-release.yml) that is not
-# yet authored in valkyrjaio/.github. This workflow is manual (workflow_dispatch)
-# and will only run once that reusable workflow lands; it does not block CI.
 name: Create a New Release
 
 on:
