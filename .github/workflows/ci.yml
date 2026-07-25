@@ -28,7 +28,7 @@ jobs:
 
   golangci-lint:
     name: golangci-lint
-    uses: valkyrjaio/.github/.github/workflows/_golangci-lint-go.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
+    uses: valkyrjaio/.github/.github/workflows/_go-golangci-lint.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
     with:
       paths: |
         ci:
@@ -48,7 +48,7 @@ jobs:
 
   test:
     name: Test
-    uses: valkyrjaio/.github/.github/workflows/_test-go.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
+    uses: valkyrjaio/.github/.github/workflows/_go-test.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
     with:
       paths: |
         ci:
