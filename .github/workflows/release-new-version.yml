@@ -20,8 +20,14 @@ permissions:
 
 jobs:
   release:
-    uses: valkyrjaio/.github/.github/workflows/_create-go-release.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
+    uses: valkyrjaio/.github/.github/workflows/_go-create-release.yml@b5baed3ba0fa4133cd7157dd2f4249ae85252c1b
     secrets: inherit
     with:
       bump: ${{ inputs.bump }}
       info-file-path: template/constant/info.go
+      info-file-name: Info
+      dependencies: |
+        [
+          {"name": "Root Module",   "directory": "."},
+          {"name": "golangci-lint", "directory": ".github/ci/lint"}
+        ]

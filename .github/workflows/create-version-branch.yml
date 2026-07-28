@@ -6,7 +6,7 @@ run-name: Create new version for upcoming major release
 
 jobs:
   create:
-    uses: valkyrjaio/.github/.github/workflows/_create-go-version-branch.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
+    uses: valkyrjaio/.github/.github/workflows/_go-create-version-branch.yml@b5baed3ba0fa4133cd7157dd2f4249ae85252c1b
     secrets: inherit
     with:
       dependencies: |
