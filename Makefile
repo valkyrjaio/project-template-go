@@ -6,10 +6,15 @@
 # run via `go tool` so its version never mixes with the framework's own deps.
 GOLANGCI_LINT ?= go tool -modfile=.github/ci/lint/go.mod golangci-lint
 
+# The coverage floor, as a percentage. 100 is the definition of done; it is a hard
+# floor, never lowered to accommodate a gap (cover the code, or leave it out of the
+# build). Override only for a local spot check: `make coverage COVERAGE_FLOOR=90`.
+COVERAGE_FLOOR ?= 100
+
 .DEFAULT_GOAL := ci
 
 .PHONY: ci
-ci: tidy-check fmt-check lint test ## Run the full CI gate
+ci: tidy-check fmt-check lint coverage ## Run the full CI gate
 
 .PHONY: build
 build: ## Compile every package
@@ -20,9 +25,31 @@ test: ## Run tests with the race detector
 	go test -race ./...
 
 .PHONY: coverage
-coverage: ## Run tests with coverage (line; branch gaps reviewed in code review)
+coverage: ## Run tests with coverage and fail below COVERAGE_FLOOR
 	go test -race -covermode=atomic -coverprofile=coverage.out ./...
 	go tool cover -func=coverage.out
+# `go tool cover` only reports and always exits 0, so without this the profile was
+# generated and then ignored — a run at 55% passed exactly like one at 100%.
+#
+# Statement coverage only: Go has no native branch coverage, so an untested branch
+# inside a covered statement stays invisible here and is a review concern (see
+# architecture/go/AGENTS.md).
+#
+# A package of nothing but constants has no statements at all, and `go tool cover`
+# prints "total: (statements) 0.0%" for that — identical to genuinely covering
+# nothing. Counting the per-function rows tells the two apart: no rows means there
+# was nothing to cover, which is a pass, not a 0% failure.
+	@go tool cover -func=coverage.out | awk -v floor='$(COVERAGE_FLOOR)' ' \
+		/^total:/ { total = $$3; next } \
+		{ rows++ } \
+		END { \
+			if (rows == 0) { print "No statements to cover; nothing to enforce."; exit 0 } \
+			sub(/%$$/, "", total); \
+			if (total + 0 < floor + 0) { \
+				printf "FAIL  statement coverage %.1f%% < %.1f%%\n", total, floor; exit 1 \
+			} \
+			printf "PASS  statement coverage %.1f%% >= %.1f%%\n", total, floor \
+		}'
 
 .PHONY: fmt
 fmt: ## Format the codebase
