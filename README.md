@@ -108,15 +108,15 @@ This template is open-source software licensed under the
 
 [starter url]: https://github.com/valkyrjaio/valkyrja-starter-app-go
 
-[repository naming url]: https://github.com/valkyrjaio/.github/blob/master/REPOSITORY_NAMING.md
+[repository naming url]: https://github.com/valkyrjaio/.github/blob/26.x/REPOSITORY_NAMING.md
 
-[vocabulary url]: https://github.com/valkyrjaio/.github/blob/master/VOCABULARY.md
+[vocabulary url]: https://github.com/valkyrjaio/.github/blob/26.x/VOCABULARY.md
 
-[contributing url]: https://github.com/valkyrjaio/.github/blob/master/CONTRIBUTING.md
+[contributing url]: https://github.com/valkyrjaio/.github/blob/26.x/CONTRIBUTING.md
 
-[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/master/SECURITY.md
+[security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/26.x/SECURITY.md
 
-[Versioning and Release Process url]: https://github.com/valkyrjaio/.github/blob/master/VERSIONING_AND_RELEASE_PROCESS.md
+[Versioning and Release Process url]: https://github.com/valkyrjaio/.github/blob/26.x/VERSIONING_AND_RELEASE_PROCESS.md
 
 [semantic versioning url]: https://semver.org/
 
