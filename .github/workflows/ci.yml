@@ -44,7 +44,7 @@ jobs:
   # as `CI / Tools / <Tool> / …`.
   tools:
     name: Tools
-    uses: valkyrjaio/.github/.github/workflows/_go-ci-tools.yml@87b0854df8b20820d055e7ef38a3410044bc4d18
+    uses: valkyrjaio/.github/.github/workflows/_go-ci-tools.yml@d0beb54c7893e0a38a045495d24c5313b3c19ce8
     with:
       source-paths: |
         **/*.go
