@@ -50,6 +50,14 @@ linters:
     - paralleltest   # t.Parallel() is encouraged, not mandated
 
   settings:
+    # Enforce the license header. `goheader` is enabled by `default: all`, but a
+    # template is what makes it check anything — without one it accepts any file.
+    # The identifier comes from COPYRIGHT_HEADER.md in the .github repo.
+    goheader:
+      # The template lives in a file rather than inline: goheader compares the
+      # comment verbatim, including each line's ` * ` prefix, and a YAML block
+      # scalar strips the leading space that those lines depend on.
+      template-path: .github/ci/lint/license-header.txt
     revive:
       rules:
         # Parity: the framework keeps Get/Set prefixes on accessors across every
