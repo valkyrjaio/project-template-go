@@ -44,9 +44,9 @@ jobs:
       VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
       VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
 
-  # golangci-lint holds every Go file to the copyright header through `goheader`, and it reads only
-  # Go. The task runner and a file of any other type have no mechanism that reads the header.
-  # This job is closed by default instead: it requires the header in every tracked file that
+  # This job is the only mechanism that holds a file to the copyright header. It reads every file,
+  # whatever the language, and it holds the header text in one place for every repository.
+  # This job is closed by default: it requires the header in every tracked file that
   # `EXCLUDED` does not match, so a file of a type no tool reads cannot pass in silence.
   # `.github/ci/copyright-header/config` holds that list. The job stands outside the `source-paths`
   # filter that the `tools` job derives, because a filter that misses a path skips the job, and a
