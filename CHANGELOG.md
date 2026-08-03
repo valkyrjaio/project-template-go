@@ -1,6 +1,19 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/project-template-go/compare/v26.0.2...26.x)
+## [Unreleased](https://github.com/valkyrjaio/project-template-go/compare/v26.0.3...26.x)
+
+## [v26.0.3](https://github.com/valkyrjaio/project-template-go/compare/v26.0.2...v26.0.3) - 2026-08-03
+
+* [Copyright] ci: Add the copyright header check by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/41
+* [Workflow] ci: Update .github workflow refs to v26.22.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/project-template-go/pull/42
+* [Workflow] ci: Pin the copyright header check to v26.22.0 by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/44
+* [Copyright] ci: Remove the goheader linter and its header template by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/43
+* [Readme] docs: Add the coverage and maintainability badges by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/46
+* [Lint] ci: Consume the shared configuration and the copyright header tool by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/45
+* [Readme] fix: Read coverage from Coveralls and restore the version badge by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/47
+* [Workflow] ci: Update .github workflow refs to v26.23.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/project-template-go/pull/49
+* [Copyright] fix: Read the package identifier from the header config by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/48
+* [Dependency] build: Update Go dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/project-template-go/pull/51
 
 ## [v26.0.2](https://github.com/valkyrjaio/project-template-go/compare/v26.0.1...v26.0.2) - 2026-08-02
 
