@@ -16,9 +16,10 @@ end-user applications built on the Valkyrja framework (use
 
 <p>
     <a href="https://pkg.go.dev/github.com/valkyrjaio/project-template-go/v26"><img src="https://pkg.go.dev/badge/github.com/valkyrjaio/project-template-go/v26.svg" alt="Go Reference"></a>
+    <a href="https://github.com/valkyrjaio/project-template-go/releases"><img src="https://img.shields.io/github/v/release/valkyrjaio/project-template-go" alt="Latest Version"></a>
     <a href="https://github.com/valkyrjaio/project-template-go/blob/26.x/LICENSE.md"><img src="https://img.shields.io/github/license/valkyrjaio/project-template-go.svg" alt="License"></a>
     <a href="https://github.com/valkyrjaio/project-template-go/actions/workflows/ci.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/project-template-go/actions/workflows/ci.yml/badge.svg?branch=26.x" alt="CI Status"></a>
-    <a href="https://sonarcloud.io/summary/new_code?id=valkyrjaio_project-template-go"><img src="https://sonarcloud.io/api/project_badges/measure?project=valkyrjaio_project-template-go&metric=coverage" alt="Coverage"></a>
+    <a href="https://coveralls.io/github/valkyrjaio/project-template-go?branch=26.x"><img src="https://coveralls.io/repos/github/valkyrjaio/project-template-go/badge.svg?branch=26.x" alt="Coverage Status"></a>
     <a href="https://sonarcloud.io/summary/new_code?id=valkyrjaio_project-template-go"><img src="https://sonarcloud.io/api/project_badges/measure?project=valkyrjaio_project-template-go&metric=sqale_rating" alt="Maintainability Rating"></a>
 </p>
 
