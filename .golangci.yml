@@ -20,6 +20,14 @@ linters:
     - err113         # typed/sentinel error parity, not Go's dynamic-error rule
 
     # --- Redundant / handled elsewhere ----------------------------------------
+    # The copyright header check reads every tracked file, and it holds the
+    # header text in one place for every language. `goheader` reads only Go, and
+    # it needs a second copy of that text in this repository. See
+    # .github/ci/copyright-header/config for the identifier this repository
+    # supplies. Its `--fix` also rewrites the comment indentation and then
+    # reports no issue, so a developer who runs it breaks the file and is not
+    # told. COPYRIGHT_HEADER.md in the .github repository records that behavior.
+    - goheader
     - gocyclo        # complexity: keep one metric (cyclop); drop the duplicates
     - gocognit       # duplicate complexity metric
     - maintidx       # duplicate maintainability metric
@@ -50,14 +58,6 @@ linters:
     - paralleltest   # t.Parallel() is encouraged, not mandated
 
   settings:
-    # Enforce the license header. `goheader` is enabled by `default: all`, but a
-    # template is what makes it check anything — without one it accepts any file.
-    # The identifier comes from COPYRIGHT_HEADER.md in the .github repo.
-    goheader:
-      # The template lives in a file rather than inline: goheader compares the
-      # comment verbatim, including each line's ` * ` prefix, and a YAML block
-      # scalar strips the leading space that those lines depend on.
-      template-path: .github/ci/lint/license-header.txt
     revive:
       rules:
         # Parity: the framework keeps Get/Set prefixes on accessors across every
