@@ -1,3 +1,11 @@
+#
+# This file is part of the Project Template package.
+#
+# Copyright (c) 2016-present Melech Mizrachi
+#
+# Released under the MIT License. See LICENSE.md for details.
+#
+
 # Root task runner for the Valkyrja Go template — the analog of PHP's
 # composer.json, TypeScript's package.json, and Java's Gradle scripts. Drive
 # every CI tool through these targets; check here first for exact target names.
