@@ -44,8 +44,11 @@ jobs:
       VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
       VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
 
-  # This job is the only mechanism that holds a file to the copyright header. It reads every file,
-  # whatever the language, and it holds the header text in one place for every repository.
+  # This job reads every tracked file, whatever the language, and it holds the header text in one
+  # place for every repository. `make header-check` reads a Go file only, so this job is what holds
+  # the Makefile, a shell script, and a configuration file to the header. The two agree by
+  # construction: both spell the header from the same specification, and neither keeps a copy of it
+  # in this repository.
   # This job is closed by default: it requires the header in every tracked file that
   # `EXCLUDED` does not match, so a file of a type no tool reads cannot pass in silence.
   # `.github/ci/copyright-header/config` holds that list. The job stands outside the `source-paths`

@@ -20,13 +20,16 @@ linters:
     - err113         # typed/sentinel error parity, not Go's dynamic-error rule
 
     # --- Redundant / handled elsewhere ----------------------------------------
-    # The copyright header check reads every tracked file, and it holds the
-    # header text in one place for every language. `goheader` reads only Go, and
-    # it needs a second copy of that text in this repository. See
-    # .github/ci/copyright-header/config for the identifier this repository
-    # supplies. Its `--fix` also rewrites the comment indentation and then
-    # reports no issue, so a developer who runs it breaks the file and is not
-    # told. COPYRIGHT_HEADER.md in the .github repository records that behavior.
+    # `valkyrjalint header` writes the copyright header, and the copyright header
+    # check verifies it. Both hold the header text in one place, so `goheader`
+    # would add a second copy of that text to every repository.
+    #
+    # Warning: never enable `goheader` to get an automatic header. Its fix cannot
+    # write the block form that every Valkyrja language uses. `generateFix`
+    # prefixes each line with `// ` where a file carries no header, and it
+    # replaces the first comment in the file, which deletes a package doc comment
+    # that sits where the header belongs. It reports `0 issues` after each of
+    # those. Run `make header-fix` instead.
     - goheader
     - gocyclo        # complexity: keep one metric (cyclop); drop the duplicates
     - gocognit       # duplicate complexity metric

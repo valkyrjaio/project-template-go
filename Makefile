@@ -14,6 +14,15 @@
 # run via `go tool` so its version never mixes with the framework's own deps.
 GOLANGCI_LINT ?= go tool -modfile=.github/ci/lint/go.mod golangci-lint
 
+# valkyrjalint ships the golangci-lint configuration and the copyright header
+# tool that every Valkyrja Go repository runs. It is pinned in the same isolated
+# tool module as golangci-lint. See github.com/valkyrjaio/ci-golangcilint-go.
+VALKYRJALINT ?= go tool -modfile=.github/ci/lint/go.mod valkyrjalint
+
+# The package identifier this repository's headers name. COPYRIGHT_HEADER.md in
+# the .github repository maps every repository to its own value.
+PACKAGE_IDENTIFIER ?= Project Template
+
 # The coverage floor, as a percentage. 100 is the definition of done; it is a hard
 # floor, never lowered to accommodate a gap (cover the code, or leave it out of the
 # build). Override only for a local spot check: `make coverage COVERAGE_FLOOR=90`.
@@ -22,7 +31,36 @@ COVERAGE_FLOOR ?= 100
 .DEFAULT_GOAL := ci
 
 .PHONY: ci
-ci: tidy-check fmt-check lint coverage ## Run the full CI gate
+ci: tidy-check config-check header-check fmt-check lint coverage ## Run the full CI gate
+
+.PHONY: config-write
+config-write: ## Write .golangci.yml from the shared configuration
+	$(VALKYRJALINT) config > .golangci.yml
+
+# `diff` rather than a flag on the command: it matches `go mod tidy -diff`, and it
+# prints what differs instead of only reporting that something does.
+#
+# Warning: never pipe the generator straight into `diff`. `make` runs a recipe under
+# `/bin/sh`, which has no `pipefail`, so the pipeline reports `diff`'s status. A
+# generator that fails writes nothing, `diff` then reports the whole file as removed,
+# and the recipe blames a stale file for a crash. Write the output to a file first, so
+# the generator's own status ends the recipe and its stderr is what the reader sees.
+.PHONY: config-check
+config-check: ## Fail where .golangci.yml differs from the shared configuration
+	@generated=$$(mktemp); trap 'rm -f "$$generated"' EXIT; \
+		$(VALKYRJALINT) config > "$$generated" \
+		&& { diff -u .golangci.yml "$$generated" \
+			|| { echo 'FAIL  .golangci.yml is stale. Run: make config-write'; exit 1; }; }
+
+.PHONY: header-fix
+header-fix: ## Write the copyright header into every Go file that lacks it
+	$(VALKYRJALINT) header -package '$(PACKAGE_IDENTIFIER)' -w .
+
+.PHONY: header-check
+header-check: ## Fail where a Go file carries no copyright header, or the wrong one
+	@$(VALKYRJALINT) header -package '$(PACKAGE_IDENTIFIER)' . \
+		&& echo 'PASS  every Go file carries the copyright header' \
+		|| { echo 'FAIL  the files above need the header. Run: make header-fix'; exit 1; }
 
 .PHONY: build
 build: ## Compile every package
