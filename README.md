@@ -113,7 +113,7 @@ This template is open-source software licensed under the
 [vocabulary url]: https://github.com/valkyrjaio/.github/blob/26.x/VOCABULARY.md
 [contributing url]: https://github.com/valkyrjaio/.github/blob/26.x/CONTRIBUTING.md
 [security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/26.x/SECURITY.md
-[Versioning and Release Process url]: https://github.com/valkyrjaio/.github/blob/26.x/VERSIONING_AND_RELEASE_PROCESS.md
+[Versioning and Release Process url]: https://github.com/valkyrjaio/architecture/blob/26.x/VERSIONING.md
 [semantic versioning url]: https://semver.org/
 [semantic import versioning url]: https://go.dev/ref/mod#major-version-suffixes
 [MIT license url]: https://opensource.org/licenses/MIT
