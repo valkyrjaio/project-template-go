@@ -1,6 +1,15 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/project-template-go/compare/v26.0.3...26.x)
+## [Unreleased](https://github.com/valkyrjaio/project-template-go/compare/v26.0.4...26.x)
+
+## [v26.0.4](https://github.com/valkyrjaio/project-template-go/compare/v26.0.3...v26.0.4) - 2026-08-05
+
+* [Workflow] ci: Update .github workflow refs to v26.23.1 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/project-template-go/pull/52
+* [Makefile] fix: Scope the identifier check and describe this repository by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/50
+* [Makefile] ci: Drop the fixtures packages from the coverage profile by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/53
+* [Readme] fix: Pin the art asset links to the version branch by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/54
+* [Dependency] build: Update Go dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/project-template-go/pull/56
+* [Link] fix: Repair the architecture and versioning document links by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/project-template-go/pull/55
 
 ## [v26.0.3](https://github.com/valkyrjaio/project-template-go/compare/v26.0.2...v26.0.3) - 2026-08-03
 
